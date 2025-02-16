@@ -53,11 +53,8 @@ public class FirstStep {
     }
 
     public int min(int[] array){
-        if (array.length == 0) {
-            return Integer.MAX_VALUE;
-        }
 
-        var min = array[0];
+        var min = Integer.MAX_VALUE;
         for (int i : array) {
             if (i < min) {
                 min = i;
@@ -67,11 +64,8 @@ public class FirstStep {
     }
 
     public int max(int[] array){
-        if (array.length == 0) {
-            return Integer.MIN_VALUE;
-        }
 
-        var max = array[0];
+        var max = Integer.MIN_VALUE;
         for (int i : array) {
             if (i > max) {
                 max = i;
@@ -81,14 +75,8 @@ public class FirstStep {
     }
 
     public double average(int[] array){
-        if (array.length == 0) {
-            return 0;
-        }
 
-        double result = 0;
-        for (int i : array) {
-            result += i;
-        }
+        double result = sum(array);
         return result / array.length;
     }
 
@@ -148,33 +136,22 @@ public class FirstStep {
     public int sum(int[][] matrix){
         var result = 0;
         for (int i = 0; i < matrix.length; i++) {
-            for (int j = 0; j < matrix[i].length; j++) {
-                result += matrix[i][j];
-            }
+            result += sum(matrix[i]);
         }
         return result;
     }
 
     public int max(int[][] matrix){
-        if (matrix.length == 0) {
-            return Integer.MIN_VALUE;
-        }
 
         var max = Integer.MIN_VALUE;
         for (int i = 0; i < matrix.length; i++) {
-            for (int j = 0; j < matrix[i].length; j++) {
-                if (matrix[i][j] > max) {
-                    max = matrix[i][j];
-                }
-            }
+            int maxInRow = max(matrix[i]);
+            max = max >= maxInRow ? max : maxInRow;
         }
         return max;
     }
 
     public int diagonalMax(int[][] matrix){
-        if (matrix.length == 0) {
-            return Integer.MIN_VALUE;
-        }
 
         var max = Integer.MIN_VALUE;
         for (int i = 0; i < matrix.length; i++) {
